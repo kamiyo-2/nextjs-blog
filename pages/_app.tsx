@@ -1,12 +1,16 @@
 import '../styles/global.css'
 import {CssBaseline, StylesProvider} from "@material-ui/core";
 import { AppProps } from 'next/app'
+import { SessionProvider } from "next-auth/react"
 
-export default function App({ Component, pageProps }: AppProps) {
+
+export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <StylesProvider injectFirst>
-      <CssBaseline />
-      <Component {...pageProps} />
+      <SessionProvider session={session}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </SessionProvider>
     </StylesProvider>
   )
 }
