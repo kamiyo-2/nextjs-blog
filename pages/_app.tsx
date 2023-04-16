@@ -1,8 +1,14 @@
 import '../styles/global.css'
+import {CssBaseline, StylesProvider} from "@material-ui/core";
 import { AppProps } from 'next/app'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <StylesProvider injectFirst>
+      <CssBaseline />
+      <Component {...pageProps} />
+    </StylesProvider>
+  )
 }
 
 // .js
